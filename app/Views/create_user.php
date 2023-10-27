@@ -23,13 +23,30 @@
                 </li>
             </ul>
             <form action="<?= base_url('/user/store') ?>" method="POST">
+                <?php if (!empty(session()->getFlashdata('error'))) : ?>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <h4>Error</h4>
+                        </hr />
+                        <?php echo session()->getFlashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="mb-3">
                     <label for="nama" class="form-label" style="color: white;">Nama</label>
                     <input type="text" class="form-control" id="nama" name="nama">
                 </div>
                 <div class="mb-3">
                     <label for="kelas" class="form-label" style="color: white;">Kelas</label>
-                    <input type="text" class="form-control" id="kelas" name="kelas">
+                    <select type="text" class="form-control" id="kelas" name="kelas" style="background-color: transparent;color: white;">
+                        <?php
+                        foreach ($kelas as $item){
+                        ?>
+                            <option value="<?= $item['id'] ?>" style="color: black;">
+                                <?= $item['nama_kelas'] ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="npm" class="form-label" style="color: white;">NPM</label>
