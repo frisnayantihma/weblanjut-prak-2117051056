@@ -31,8 +31,8 @@ class UserController extends BaseController
     {
         
         $data = [
-            'nama' => "$nama",
-            'kelas' => "$kelas",            
+            'nama' => $nama,
+            'kelas' => $kelas,            
             'npm' => $npm,
         ];
 
@@ -100,10 +100,19 @@ class UserController extends BaseController
             return redirect()->to('/user/create');
         }
 
+            
+            $path = 'assets/uploads/img/';
+            $foto = $this->request->getFile('foto');
+            $name = $foto->getRandomName();
+            if ($foto->move($path, $name)) {
+            $foto = base_url($path . $name);
+        }
+
             $this->userModel->saveUser([
                 'nama' => $this->request->getVar('nama'),
                 'id_kelas' => $this->request->getVar('kelas'),
                 'npm' => $this->request->getVar('npm'),
+                'foto' => $foto
             ]);
 
             return redirect()->to('/user');
@@ -119,6 +128,4 @@ class UserController extends BaseController
 
         return view('profile', $data);
     }
-      
-
 }

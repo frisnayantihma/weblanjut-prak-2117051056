@@ -33,15 +33,15 @@
 }
 
         .profile-picture {
-            background-image: url(/profile/IMG/ine.jpg);
+            /* background-image: url(/profile/IMG/ine.jpg);
             width: 150px;
-            height: 150px;
+            height: 150px; */
             background-color: #ddd; /* Warna latar belakang foto profil */
             border-radius: 100%;  /*Untuk membuatnya menjadi lingkaran */
             background-size: cover;
-            margin: 0 auto;
-            margin-bottom: 20px;
-            line-height: 150px;
+            /* margin: 0 auto; */
+            /* margin-bottom: 20px;
+            line-height: 150px; */
             font-size: 48px; /* Ukuran teks di dalam lingkaran */
             color: #000; /* Warna teks di dalam lingkaran */
         }
@@ -61,16 +61,17 @@
 <body>
     <div class="profile-card">
         <div class="profile-picture">
+            <img src="<?= $user['foto'] ?? '<default-foto>' ?>" width="100%" height="100%" alt="">
             <i class="fas fa-user"></i> <!-- Gunakan ikon profil Font Awesome di sini -->
         </div>
         <div class="profile-info">
-            <?= $nama?>
+            <?= $user['nama'] ?>
         </div>
         <div class="profile-info">
-            <?= $kelas ?>
+            <?= $user['nama_kelas'] ?>
         </div>
         <div class="profile-info">
-            <?= $npm?>
+            <?= $user['npm'] ?>
         </div>
     </div>
 </body>
