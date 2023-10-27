@@ -54,6 +54,10 @@
                     <label for="npm" class="form-label" style="color: white;">NPM</label>
                     <input type="number" class="form-control" id="npm" name="npm">
                 </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label" style="color: white;">Foto</label>
+                    <input type="file" class="form-control" id="foto" name="foto">
+                </div>
                 <button type="submit" class="btn btn-primary" name="submit">Create</button>
             </form>
         </div>
