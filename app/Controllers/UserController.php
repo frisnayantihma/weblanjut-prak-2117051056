@@ -19,7 +19,12 @@ class UserController extends BaseController
 
     public function index()
     {
-      //
+        $data = [
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+        //
+        return view('list_user', $data);
     }
 
     public function profile($nama = "", $kelas = "", $npm="")
@@ -37,26 +42,31 @@ class UserController extends BaseController
 
     public function create()
     {
-        $kelas = [
-            [
-                'id'=>1 ,
-                'nama_kelas' => 'A',
-            ],
-            [
-                'id'=> 2,
-                'nama_kelas' => 'B',
-            ],
-            [
-                'id'=> 3,
-                'nama_kelas' => 'C',
-            ],
-            [
-                'id'=> 4,
-                'nama_kelas' => 'D',
-            ],
-        ];
+        // $kelas = [
+        //     [
+        //         'id'=>1 ,
+        //         'nama_kelas' => 'A',
+        //     ],
+        //     [
+        //         'id'=> 2,
+        //         'nama_kelas' => 'B',
+        //     ],
+        //     [
+        //         'id'=> 3,
+        //         'nama_kelas' => 'C',
+        //     ],
+        //     [
+        //         'id'=> 4,
+        //         'nama_kelas' => 'D',
+        //     ],
+        // ];
+
+        // $kelasModel = new KelasModel();
+
+        $kelas = $this->kelasModel->getKelas();
 
         $data = [
+            'title' => 'Create User',
             'kelas' => $kelas,
         ];
 
@@ -65,6 +75,7 @@ class UserController extends BaseController
     
     public function store()
     {
+
         $rules = [
             'npm' => [
                 'rules' => 'required|min_length[10]|max_length[10]|is_unique[user.npm]',
@@ -87,28 +98,27 @@ class UserController extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
 
             return redirect()->to('/user/create');
-        }else{
-            $userModel = new UserModel();
-            
+        }
 
-            $userModel->saveUser([
+            $this->userModel->saveUser([
                 'nama' => $this->request->getVar('nama'),
                 'id_kelas' => $this->request->getVar('kelas'),
                 'npm' => $this->request->getVar('npm'),
             ]);
 
-            $model = new KelasModel();
-            $result = $model->find($this->request->getVar('kelas'));
-
-
-            $data = [
-                'nama' => $this->request->getVar('nama'),
-                'kelas' => $result['nama_kelas'],            
-                'npm' => $this->request->getVar('npm'),
-            ];
-            return view('profile', $data);
+            return redirect()->to('/user');
         }
-        // dd($errors);
+
+    public function show($id) {
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user'  => $user,
+        ];
+
+        return view('profile', $data);
     }
+      
 
 }
