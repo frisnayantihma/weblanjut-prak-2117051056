@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 
@@ -13,16 +13,18 @@
     <script src="https://kit.fontawesome.com/eff27b1688.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body> -->
+<?= $this->extend('layouts/app')?>
 
-    <div class="container-fluid w-100 p-0" style="margin-top: 100px !important;position: absolute;">
+<?= $this->section('content')?>
+<div class="container-fluid w-100 p-0" style="margin-top: 100px !important;position: absolute;">
         <div class="container mx-auto px-5 mt-1" style="margin-bottom: 100px !important;">
             <ul class="p-0 position-relative">
                 <li style="display: inline-block;">
                     <h2 style="color: white;font-weight: bold;">Create User</h2>
                 </li>
             </ul>
-            <form action="<?= base_url('/user/store') ?>" method="POST">
+            <form action="<?= base_url('/user/store') ?>" method="POST" enctype="multipart/form-data">
                 <?php if (!empty(session()->getFlashdata('error'))) : ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <h4>Error</h4>
@@ -56,7 +58,10 @@
             </form>
         </div>
     </div>
+<?= $this->endSection()?>
 
+
+<!-- 
 </body>
 
-</html>
+</html> -->
