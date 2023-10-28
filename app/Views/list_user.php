@@ -12,27 +12,29 @@
         </tr>
     </thead>
     <tbody>
-    <!-- <a href="<?= base_url('/user/create') ?>">Tambah Data</a> -->
     <form action="<?= base_url('/user/create') ?>">
-    <button type=submit>Tambah Data</button></form>
-
+    <br>
+    <center><button type=submit class="btn btn-primary">Tambah Data</button></form></center>
+    <br>
+    <br>
         <?php
+        $no = 1;
         foreach ($users as $user){
         ?>
         <tr>
-            <td><?= $user['id'] ?></td>
+            <td><?= $no++ ?></td>
             <td><?= $user['nama'] ?></td>
             <td><?= $user['npm'] ?></td>
             <td><?= $user['nama_kelas'] ?></td>
             <td>
                 <form action="<?= base_url('user/' . $user['id']) ?>" method="get">
-                <button type=submit>Detail</button></form>
+                <button type=submit class="btn btn-primary">Detail</button></form>
                 <form action="<?= base_url('user/' . $user['id'] . '/edit') ?>" method="get">
-                <button type=submit>Edit</button></form>
+                <button type=submit class="btn btn-primary">Edit</button></form>
                 <form action="<?= base_url('user/' . $user['id']) ?>" method="post">
                 <input type="hidden" name="_method" value="DELETE">
                 <?= csrf_field() ?>
-                <button type=submit>Hapus</button></form>
+                <button type=submit class="btn btn-primary">Hapus</button></form>
             </td>
         </tr>
         <?php
