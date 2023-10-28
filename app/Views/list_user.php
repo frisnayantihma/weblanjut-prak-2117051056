@@ -12,7 +12,10 @@
         </tr>
     </thead>
     <tbody>
-    <a href="<?= base_url('/user/create') ?>">Tambah Data</a>
+    <!-- <a href="<?= base_url('/user/create') ?>">Tambah Data</a> -->
+    <form action="<?= base_url('/user/create') ?>">
+    <button type=submit>Tambah Data</button></form>
+
         <?php
         foreach ($users as $user){
         ?>
@@ -22,10 +25,14 @@
             <td><?= $user['npm'] ?></td>
             <td><?= $user['nama_kelas'] ?></td>
             <td>
-                <a href="<?= base_url('user/' . $user['id']) ?>">Detail</a>
-                <!-- <button type=button>Detail</button> -->
-                <a href="<?= base_url('user/' . $user['id'] . '/edit') ?>">Edit</a>
-                <form action="<?= base_url('user/' . $user['id']) ?>" method="post"><button type=button>Hapus</button>
+                <form action="<?= base_url('user/' . $user['id']) ?>" method="get">
+                <button type=submit>Detail</button></form>
+                <form action="<?= base_url('user/' . $user['id'] . '/edit') ?>" method="get">
+                <button type=submit>Edit</button></form>
+                <form action="<?= base_url('user/' . $user['id']) ?>" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <?= csrf_field() ?>
+                <button type=submit>Hapus</button></form>
             </td>
         </tr>
         <?php

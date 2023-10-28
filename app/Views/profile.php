@@ -33,15 +33,15 @@
 }
 
         .profile-picture {
-            /* background-image: url(/profile/IMG/ine.jpg);
+          /* background-image: url(/profile/IMG/ine.jpg); */
             width: 150px;
-            height: 150px; */
+            height: 150px;
             background-color: #ddd; /* Warna latar belakang foto profil */
             border-radius: 100%;  /*Untuk membuatnya menjadi lingkaran */
             background-size: cover;
-            /* margin: 0 auto; */
-            /* margin-bottom: 20px;
-            line-height: 150px; */
+            margin: 0 auto; 
+            margin-bottom: 20px;
+            line-height: 150px;
             font-size: 48px; /* Ukuran teks di dalam lingkaran */
             color: #000; /* Warna teks di dalam lingkaran */
         }
