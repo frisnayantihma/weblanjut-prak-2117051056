@@ -21,10 +21,10 @@
         <div class="container mx-auto px-5 mt-1" style="margin-bottom: 100px !important;">
             <ul class="p-0 position-relative">
                 <li style="display: inline-block;">
-                    <h2 style="color: white;font-weight: bold;">Edit User</h2>
+                    <h2 style="color: white;font-weight: bold;">Edit Kelas</h2>
                 </li>
             </ul>
-            <form action="<?= base_url('user/' . $user['id']) ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?=base_url('/kelas/'. $kelas['id'])?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT">
             <?= csrf_field() ?>
                 <?php if (!empty(session()->getFlashdata('error'))) : ?>
@@ -35,31 +35,9 @@
                     </div>
                 <?php endif; ?>
                 <div class="mb-3">
-                    <label for="nama" class="form-label" style="color: white;">Nama</label>
-                    <input type="text" class="form-control"  name="nama" value="<?= $user['nama'] ?>" id="nama" ... >
-                </div>
-                <div class="mb-3">
-                    <label for="kelas" class="form-label" style="color: white;">Kelas</label>
-                    <select type="text" class="form-control" id="kelas" name="kelas" style="background-color: transparent;color: white;">
-                        <?php
-                        foreach ($kelas as $item){
-                        ?>
-                            <option value="<?= $item['id'] ?>" <?= $user['id_kelas'] == $item['id'] ? 'selected' : '' ?> style="color: black;">
-                                <?= $item['nama_kelas'] ?>
-                            </option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="npm" class="form-label" style="color: white;">NPM</label>
-                    <input type="number" class="form-control" id="npm" name="npm"  value="<?= $user['npm'] ?>" ... >
-                </div>
-                <div class="mb-3">
-                    <label for="foto" class="form-label" style="color: white;">Foto</label>
-                    <img src="<?= $user['foto'] ?? '<default-foto>' ?>">
-                    <input type="file" class="form-control" id="foto" name="foto">
+                <input type="text" class="form-control <?=(empty(validation_show_error('nama_kelas'))) ? '' : 'is-invalid' ?>" name="nama_kelas" value="<?= $kelas['nama_kelas'] ?>" placeholder="nama kelas">
+                    <div class="invalid-feedback">
+                        <?= validation_show_error('nama_kelas') ?>
                 </div>
                 <button type="submit" class="btn btn-primary" name="submit">Edit</button>
             </form>

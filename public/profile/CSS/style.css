@@ -93,6 +93,7 @@ table {
     text-align: center;
     border-collapse: collapse;
     width: 100%;
+
 }
 
 th {
@@ -168,3 +169,11 @@ i:hover {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+/* .navbar {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+} */
